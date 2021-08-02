@@ -34,7 +34,19 @@ class ProfilController extends AbstractController
     }
 
     /**
-     * @Route("/add_collection/{collection}", name="add_collection")
+     * @Route("/collection", name="list_collection")
+     */
+    public function collection(): Response
+    {
+        $collections = $this->entityManager->getRepository(UserCollection::class)->findByUser($this->getUser());
+
+        return $this->render('profil/listCollection.html.twig', [
+            'collections' => $collections
+        ]);
+    }
+
+    /**
+     * @Route("/add_collection/{collection}", name="add_collection", requirements={"collection"="\d+"})
      */
     public function addCollection(Collection $collection, Request $request): Response
     {
@@ -54,8 +66,8 @@ class ProfilController extends AbstractController
             $this->entityManager->flush();
 
             $this->addFlash('success', $userCollection->getCollection()->getName() . ' a été ajouté à votre collection !');
-            
-            return $this->redirectToRoute('profil');
+
+            return $this->redirectToRoute('list_collection');
         }
 
         return $this->render('profil/addCollection.html.twig', [

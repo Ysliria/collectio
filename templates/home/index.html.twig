@@ -1,20 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1>Collectio, <small class="text-muted">le site qui gère vos collections !</small></h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <figure class="text-end mt-5    ">
+        <blockquote class="blockquote">
+            <p>Bonjour {{ app.user ? app.user.firstname : ' ' }}; voici nos derniers ajouts. Il est temps de compléter votre collection !</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+            Votre modérateur !
+        </figcaption>
+    </figure>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/laragon/www/collectio/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/laragon/www/collectio/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <hr>
+
+    <section class="row">
+        {% for last in six_last %}
+            <article class="col-6 mt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ last.name }}</h5>
+
+                        <ul>
+                            <li>Référence : {{ last.referenceNumber }}</li>
+                            <li>Nombre de pièces : {{ last.numberPieces }}</li>
+                            <li>Dimensions :
+                                <ul>
+                                    <li>Hauteur : {{ last.height }} cm</li>
+                                    <li>Largeur : {{ last.width }} cm</li>
+                                    <li>Profondeur : {{ last.depth }} cm</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+        {% endfor %}
+    </section>
 {% endblock %}

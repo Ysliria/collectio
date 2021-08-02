@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block body %}
+    <h1>{{ app.user.firstname }} {{ app.user.lastname }}</h1>
+
+    <hr>
+
+    <section>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A doloremque eius error nesciunt nulla. At, eligendi labore laborum repellendus sed sequi velit veniam voluptates. Architecto fugiat ipsa necessitatibus veniam voluptatum!
+    </section>
+
+    <section class="mt-5">
+        <h2>Actions</h2>
+
+        <ul>
+            <li>
+                <a href="{{ path('list_collection') }}">Voir ma liste</a>
+            </li>
+        </ul>
+    </section>
+{% endblock %}

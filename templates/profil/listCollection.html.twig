@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ma collection{% endblock %}
+
+{% block body %}
+    <h1>Ma collection</h1>
+
+    <hr>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="row">
+        {% for collection in collections %}
+            <article class="col-6 mt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{ collection.collection.name }}
+                            {% if collection.favourite %}
+                                <i class="fas fa-star"></i>
+                            {% endif %}
+                        </h5>
+
+                        <ul>
+                            <li>Référence : {{ collection.collection.referenceNumber }}</li>
+                            <li>Nombre de pièces : {{ collection.collection.numberPieces }}</li>
+                            <li>Dimensions :
+                                <ul>
+                                    <li>Hauteur : {{ collection.collection.height }} cm</li>
+                                    <li>Largeur : {{ collection.collection.width }} cm</li>
+                                    <li>Profondeur : {{ collection.collection.depth }} cm</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    {% if collection.comment %}
+                        <div class="card-footer">
+                            {{ collection.comment }}
+                        </div>
+                    {% endif %}
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+
+{% endblock %}

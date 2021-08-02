@@ -39,7 +39,7 @@
                                        class="btn btn-danger col-4">Supprimer</a>
                                 {% endif %}
 
-                                <a href="#" class="btn btn-primary col-4 offset-4">Ajouter à ma collection</a>
+                                <a href="{{ path('add_collection', {'collection': collection.id}) }}" class="btn btn-primary col-4 offset-4">Ajouter à ma collection</a>
                             </div>
                         </div>
                     </div>

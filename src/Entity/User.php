@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -51,6 +53,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="boolean")
      */
     private $isVerified = false;
+
+    /**
+     * @ORM\OneToMany(targetEntity=UserCollection::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $userCollections;
+
+    public function __construct()
+    {
+        $this->userCollections = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -173,6 +185,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserCollection[]
+     */
+    public function getUserCollections(): Collection
+    {
+        return $this->userCollections;
+    }
+
+    public function addUserCollection(UserCollection $userCollection): self
+    {
+        if (!$this->userCollections->contains($userCollection)) {
+            $this->userCollections[] = $userCollection;
+            $userCollection->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserCollection(UserCollection $userCollection): self
+    {
+        if ($this->userCollections->removeElement($userCollection)) {
+            // set the owning side to null (unless already changed)
+            if ($userCollection->getUser() === $this) {
+                $userCollection->setUser(null);
+            }
+        }
 
         return $this;
     }

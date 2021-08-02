@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CollectionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -50,7 +51,17 @@ class Collection
     /**
      * @ORM\Column(type="datetime_immutable")
      */
-    private $addedAt;
+        private $addedAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity=UserCollection::class, mappedBy="collection", orphanRemoval=true)
+     */
+    private $userCollections;
+
+    public function __construct()
+    {
+        $this->userCollections = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -137,6 +148,36 @@ class Collection
     public function setAddedAt(\DateTimeImmutable $addedAt): self
     {
         $this->addedAt = $addedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserCollection[]
+     */
+    public function getUserCollections(): Collection
+    {
+        return $this->userCollections;
+    }
+
+    public function addUserCollection(UserCollection $userCollection): self
+    {
+        if (!$this->userCollections->contains($userCollection)) {
+            $this->userCollections[] = $userCollection;
+            $userCollection->setCollection($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserCollection(UserCollection $userCollection): self
+    {
+        if ($this->userCollections->removeElement($userCollection)) {
+            // set the owning side to null (unless already changed)
+            if ($userCollection->getCollection() === $this) {
+                $userCollection->setCollection(null);
+            }
+        }
 
         return $this;
     }

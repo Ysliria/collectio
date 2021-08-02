@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter à ma collection{% endblock %}
+
+{% block body %}
+    <h1>Ajouter <small class="text-muted"><em>{{ collection.name }}</em></small> à ma collection !</h1>
+
+    <hr class="mb-3">
+
+    {{ form(add_collection) }}
+{% endblock %}

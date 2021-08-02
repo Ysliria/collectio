@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <h1>Collectio, <small class="text-muted">le site qui gère vos collections !</small></h1>
+
+    <figure class="text-end mt-5    ">
+        <blockquote class="blockquote">
+            <p>Bonjour {{ app.user ? app.user.firstname : ' ' }}; voici nos derniers ajouts. Il est temps de compléter votre collection !</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+            Votre modérateur !
+        </figcaption>
+    </figure>
+
+    <hr>
+
+    <section class="row">
+        {% for last in six_last %}
+            <article class="col-6 mt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ last.name }}</h5>
+
+                        <ul>
+                            <li>Référence : {{ last.referenceNumber }}</li>
+                            <li>Nombre de pièces : {{ last.numberPieces }}</li>
+                            <li>Dimensions :
+                                <ul>
+                                    <li>Hauteur : {{ last.height }} cm</li>
+                                    <li>Largeur : {{ last.width }} cm</li>
+                                    <li>Profondeur : {{ last.depth }} cm</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}

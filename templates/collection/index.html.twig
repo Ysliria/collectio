@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}A collectionner !{% endblock %}
+
+{% block body %}
+    <section>
+        <h1>Liste des items à collectionner</h1>
+
+        <hr class="mb-3">
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="row">
+            {% for collection in collections %}
+                <article class="col-6 mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ collection.name }}</h5>
+
+                            <ul>
+                                <li>Référence : {{ collection.referenceNumber }}</li>
+                                <li>Nombre de pièces : {{ collection.numberPieces }}</li>
+                                <li>Dimensions :
+                                    <ul>
+                                        <li>Hauteur : {{ collection.height }} cm</li>
+                                        <li>Largeur : {{ collection.width }} cm</li>
+                                        <li>Profondeur : {{ collection.depth }} cm</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <div class="row">
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a href="{{ path('collection_delete', {'collection': collection.id}) }}"
+                                       class="btn btn-danger col-4">Supprimer</a>
+                                {% endif %}
+
+                                <a href="{{ path('add_collection', {'collection': collection.id}) }}" class="btn btn-primary col-4 offset-4">Ajouter à ma collection</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="row mt-5">
+                <a href="{{ path('collection_add') }}" class="btn btn-success col-3 offset-9">Ajouter un article</a>
+            </div>
+        {% endif %}
+    </section>
+{% endblock %}

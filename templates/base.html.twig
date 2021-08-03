@@ -19,7 +19,7 @@
     {% endblock %}
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ path('home') }}">Collectio</a>
@@ -76,8 +76,49 @@
 <main class="container">
     {% block body %}{% endblock %}
 </main>
-<footer>
 
+<footer class="mt-auto text-center bg-dark text-white">
+    <div class="container">
+        <section class="row justify-content-evenly">
+            <div class="col-6 mt-3">
+                <strong>Collectio</strong>, le site qui gère vos collections !
+            </div>
+
+            <div class="col-6 mt-3">
+                <a href="#" class="fs-4 m-2"><i class="fab fa-facebook text-white"></i></a>
+                <a href="#" class="fs-4 m-2"><i class="fab fa-twitter text-white"></i></a>
+                <a href="#" class="fs-4 m-2"><i class="fab fa-linkedin text-white"></i></a>
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="row justify-content-evenly">
+            <div class="col-4 text-start">
+                <h3>Collectio</h3>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium asperiores consequuntur
+                    deleniti dignissimos dolor id incidunt libero minima nihil officia, praesentium quae quam, quisquam
+                    quo, veritatis? Dolorum nesciunt odio praesentium.
+                </p>
+            </div>
+
+            <div class="col-4 text-start">
+                <h3>Contact</h3>
+
+                <p><i class="fas fa-home me-3"></i> Tours, FR</p>
+                <p><i class="fas fa-envelope me-3"></i> contact@collectio.local</p>
+                <p><i class="fas fa-phone me-3"></i> +33 123 456 789</p>
+                <p><i class="fas fa-print me-3"></i> +33 123 456 789</p>
+            </div>
+        </section>
+
+        <hr>
+
+        <section>
+            © 2021 <a href="https://cefim.eu" class="link-light">CEFIM</a>
+        </section>
+    </div>
 </footer>
 </body>
 </html>

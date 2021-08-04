@@ -7,8 +7,6 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-use function Symfony\Component\String\u;
-
 class UserFixtures extends Fixture
 {
     public const FAKE_USERS = [

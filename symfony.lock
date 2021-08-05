@@ -23,6 +23,9 @@
     "doctrine/common": {
         "version": "3.1.2"
     },
+    "doctrine/data-fixtures": {
+        "version": "1.5.0"
+    },
     "doctrine/dbal": {
         "version": "2.13.2"
     },
@@ -43,6 +46,18 @@
             "./config/packages/test/doctrine.yaml",
             "./src/Entity/.gitignore",
             "./src/Repository/.gitignore"
+        ]
+    },
+    "doctrine/doctrine-fixtures-bundle": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "e5b542d4ef47d8a003c91beb35650c76907f7e53"
+        },
+        "files": [
+            "./src/DataFixtures/AppFixtures.php"
         ]
     },
     "doctrine/doctrine-migrations-bundle": {
@@ -85,8 +100,25 @@
     "egulias/email-validator": {
         "version": "3.1.1"
     },
+    "fakerphp/faker": {
+        "version": "v1.15.0"
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
+    },
+    "hautelook/alice-bundle": {
+        "version": "2.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.1",
+            "ref": "71822522faf7ed2792d86b7f94ce73443358ccb9"
+        },
+        "files": [
+            "./config/packages/dev/hautelook_alice.yaml",
+            "./config/packages/test/hautelook_alice.yaml",
+            "./fixtures/.gitignore"
+        ]
     },
     "laminas/laminas-code": {
         "version": "4.4.2"
@@ -96,6 +128,19 @@
     },
     "myclabs/deep-copy": {
         "version": "1.10.2"
+    },
+    "nelmio/alice": {
+        "version": "3.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.2",
+            "ref": "0b9900ece737bec7752e4155c0164639dd9b0cb0"
+        },
+        "files": [
+            "./config/packages/dev/nelmio_alice.yaml",
+            "./config/packages/test/nelmio_alice.yaml"
+        ]
     },
     "nikic/php-parser": {
         "version": "v4.12.0"
@@ -334,6 +379,15 @@
             "./src/Kernel.php"
         ]
     },
+    "symfony/google-mailer": {
+        "version": "4.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.4",
+            "ref": "f8fd4ddb9b477510f8f4bce2b9c054ab428c0120"
+        }
+    },
     "symfony/http-client": {
         "version": "v5.3.4"
     },
@@ -360,6 +414,15 @@
         "files": [
             "./config/packages/mailer.yaml"
         ]
+    },
+    "symfony/mailjet-mailer": {
+        "version": "5.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "5.2",
+            "ref": "037c3256baa3334fd4cc3092a63209ae523696ff"
+        }
     },
     "symfony/maker-bundle": {
         "version": "1.0",
@@ -600,6 +663,15 @@
     },
     "symfonycasts/verify-email-bundle": {
         "version": "v1.5.0"
+    },
+    "theofidry/alice-data-fixtures": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "fe5a50faf580eb58f08ada2abe8afbd2d4941e05"
+        }
     },
     "theseer/tokenizer": {
         "version": "1.2.1"

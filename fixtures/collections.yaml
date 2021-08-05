@@ -1,0 +1,10 @@
+App\Entity\Collection:
+  collection{1..50}:
+    referenceNumber: <numberBetween(1000, 9999)>
+    name: <sentence(4, true)>
+    numberPieces: <numberBetween(50, 1000)>
+    depth: <numberBetween(10, 50)>
+    height: <numberBetween(10, 50)>
+    width: <numberBetween(10, 50)>
+    addedAt: <(new \DateTimeImmutable('2012-01-05'))>
+

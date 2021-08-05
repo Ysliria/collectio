@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Collection;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 
 class CollectionFixtures extends Fixture
 {
@@ -50,8 +51,13 @@ class CollectionFixtures extends Fixture
         ['75181','Y-Wing Starfighter','1967']
     ];
 
+    /**
+     * @throws \Exception
+     */
     public function load(ObjectManager $manager)
     {
+        $faker = Factory::create();
+
         foreach (self::COLLECTIONS as $item) {
             $collection = new Collection();
 
@@ -62,12 +68,17 @@ class CollectionFixtures extends Fixture
                 ->setDepth(0)
                 ->setHeight(0)
                 ->setWidth(0)
-                ->setAddedAt(new \DateTimeImmutable())
+                ->setAddedAt(new \DateTimeImmutable($this->datetimeGenerator()))
             ;
 
             $manager->persist($collection);
         }
 
         $manager->flush();
+    }
+
+    private function datetimeGenerator(): string
+    {
+        return rand(2000, 2021) . '-' . rand(1, 12) . '-'. rand(1, 28);
     }
 }

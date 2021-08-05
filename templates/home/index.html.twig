@@ -9,6 +9,7 @@
         <blockquote class="blockquote">
             <p>Bonjour {{ app.user ? app.user.firstname : ' ' }}; voici nos derniers ajouts. Il est temps de compléter votre collection !</p>
         </blockquote>
+        
         <figcaption class="blockquote-footer">
             Votre modérateur !
         </figcaption>
@@ -17,6 +18,8 @@
     <hr>
 
     <section class="row">
+        <h2>Les derniers ajoutés</h2>
+
         {% for last in six_last %}
             <article class="col-6 mt-3">
                 <div class="card">
@@ -38,5 +41,13 @@
                 </div>
             </article>
         {% endfor %}
+    </section>
+
+    <hr class="mt-5 mb-5">
+
+    <section class="row mt-5">
+        <h2>Les ajouts par mois</h2>
+
+        {{ render_chart(chart) }}
     </section>
 {% endblock %}

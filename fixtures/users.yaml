@@ -1,0 +1,14 @@
+App\Entity\User:
+  user_0:
+    firstname: admin
+    lastname: ADMIN
+    email: admin@collection.local
+    password: '\$2y\$13\$9XgXpCY/I4eyej8bA6WWieILZlD9h8j3pwDdacTo8k9F0VKNqV/3W'
+    isVerified: true
+  user_{1..10}:
+    firstname: <firstname()>
+    lastname: <lastname()>
+    #email: '<sprintf("%s.%s@gmail.com", @self->firstname, @self->lastname)>'
+    email: 'user_<current()>\@example.org'
+    password: '\$2y\$13\$9XgXpCY/I4eyej8bA6WWieILZlD9h8j3pwDdacTo8k9F0VKNqV/3W'
+    isVerified: true
